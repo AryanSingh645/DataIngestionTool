@@ -1,0 +1,27 @@
+# Maven target folder
+/target/
+
+# Logs
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Surefire reports
+/surefire-reports/
+
+# Application properties
+application.properties
+
+# CSV files
+*.csv
