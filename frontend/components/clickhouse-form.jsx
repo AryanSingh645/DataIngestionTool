@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 
-export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
+export default function ClickHouseForm({ onConnect, onPreview, isConnected, onInputChange }) {
   const [config, setConfig] = useState({
     host: "",
     port: "8443",
@@ -16,9 +16,13 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
   })
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target
-    setConfig((prev) => ({ ...prev, [name]: value }))
+    onInputChange(e) // Call the parent-provided handler to update the parent state
+    setConfig((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleConnect = async (e) => {
@@ -47,7 +51,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
               id="host"
               name="host"
               value={config.host}
-              onChange={handleChange}
+              onChange={handleInputChange} // Updated to use handleInputChange
               placeholder="e.g., example.clickhouse.cloud"
               required
             />
@@ -59,7 +63,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
               id="port"
               name="port"
               value={config.port}
-              onChange={handleChange}
+              onChange={handleInputChange} // Updated to use handleInputChange
               placeholder="e.g., 8443"
               required
             />
@@ -73,7 +77,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
               id="database"
               name="database"
               value={config.database}
-              onChange={handleChange}
+              onChange={handleInputChange} // Updated to use handleInputChange
               placeholder="e.g., default"
               required
             />
@@ -85,7 +89,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
               id="user"
               name="user"
               value={config.user}
-              onChange={handleChange}
+              onChange={handleInputChange} // Updated to use handleInputChange
               placeholder="e.g., default"
               required
             />
@@ -99,7 +103,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
             name="jwtToken"
             type="password"
             value={config.jwtToken}
-            onChange={handleChange}
+            onChange={handleInputChange} // Updated to use handleInputChange
             placeholder="Enter your JWT token or password"
             required
           />
@@ -111,7 +115,7 @@ export default function ClickHouseForm({ onConnect, onPreview, isConnected }) {
             id="table"
             name="table"
             value={config.table}
-            onChange={handleChange}
+            onChange={handleInputChange} // Updated to use handleInputChange
             placeholder="e.g., my_table"
             required
           />
