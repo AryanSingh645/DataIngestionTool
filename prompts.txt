@@ -1,0 +1,47 @@
+1. Create a backend service in Java that can ingest data from ClickHouse into a flat file and vice versa, depending on a dynamic request payload.
+
+2. Define a flexible DTO that accepts both ClickHouse and Flat File configurations, along with source/target type identifiers.
+
+3. Implement a service class in Spring Boot that routes ingestion based on source and target types (e.g., CLICKHOUSE → FLATFILE or FLATFILE → CLICKHOUSE).
+
+4. Design and implement the logic to read data from a ClickHouse database using JDBC, including column selection and filtering support.
+
+5. Create logic to write tabular data (List of maps) into a flat file using a configurable delimiter and column list.
+
+6. Implement logic to read structured CSV or delimited flat files and return them as row-wise data structures (List of maps) for ingestion into ClickHouse.
+
+7. Write a method to dynamically construct and execute a ClickHouse `INSERT INTO` query using JDBC with column-mapped input.
+
+# FRONTEND MULTI-STEP UI
+
+8. Create a multi-step React UI that allows the user to:
+   - Step 1: Select source and target types
+   - Step 2: Input configuration for the selected source
+   - Step 3: Preview source data in a table
+   - Step 4: Select columns to ingest
+   - Step 5: Trigger ingestion and show results
+
+9. Add support in the frontend for capturing and persisting a JWT token used to authenticate ClickHouse Cloud requests.
+
+10. In the frontend, allow the user to manually input column names and auto-select from previewed data when available.
+
+# CLICKHOUSE JWT SUPPORT
+
+11. Configure the backend to connect to ClickHouse Cloud using HTTPS and JWT-based authentication via the HTTP port (8443).
+
+12. Design a secure mechanism to accept a JWT token from the frontend, forward it through JDBC properties, and cleanly handle authentication errors.
+
+13. Simulate JWT token handling in development mode using dummy values if real ClickHouse JWT auth is not available.
+
+14. Persist the JWT token on the frontend using localStorage and clear it on logout or browser session end.
+
+# PREVIEW & VALIDATION
+
+15. Add a REST endpoint that accepts ClickHouse config and column list and returns a small preview of table data.
+
+16. Add a REST endpoint that accepts flat file config (path + delimiter) and returns a sample of the parsed file contents.
+
+17. Create a UI component that displays previewed data in a scrollable table and allows the user to select columns for ingestion.
+
+18. Implement client-side validation for required fields (host, port, table name, columns, JWT) before enabling preview or ingestion.
+
